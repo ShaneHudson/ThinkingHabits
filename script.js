@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function()  {
-  var el_habits = document.querySelectorAll('.js-habit');
+  var el_habits = document.querySelectorAll('[name=habits]');
   var details = {
     habits: []
   };
@@ -7,13 +7,23 @@ document.addEventListener("DOMContentLoaded", function()  {
   for (var i = 0; i < el_habits.length; i++) {
     var el_habit = el_habits[i];
     el_habit.addEventListener('change', function selectHabit()  {
-      details.habits[0] = this.getAttribute('data-habit');
-      console.log(details);
+      var el_habits_checked = document.querySelectorAll('[name=habits]:checked');
+      details.habits = [];
 
-      var date = new Date();
-      document.querySelector('.js-time').value = date.getHours() + ":" + date.getMinutes();
-      document.querySelector('.js-date').valueAsDate = date;
-      document.querySelector('.js-details').setAttribute('style', 'display:block');
+      for (var j = 0; j < el_habits_checked.length; j++)  {
+        details.habits[j] = el_habits_checked[j].getAttribute('value');
+      }
+
+      console.log(details);
+      if (el_habits_checked.length > 0) {
+        var date = new Date();
+        document.querySelector('.js-time').value = date.getHours() + ":" + date.getMinutes();
+        document.querySelector('.js-date').valueAsDate = date;
+        document.querySelector('.js-next').setAttribute('style', 'display:block');
+      }
+      else  {
+        document.querySelector('.js-next').setAttribute('style', 'display:none');
+      }
     });
   }
 
@@ -46,7 +56,25 @@ document.addEventListener("DOMContentLoaded", function()  {
   var el_export = document.querySelector('.js-export');
   el_export.addEventListener('click', function exportData()  {
     console.log(getAllData());
+    var data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(getAllData()));
+    this.setAttribute("href", data);
+    this.setAttribute("download", "thinkinghabits-export.json");
+    this.click();
   });
+  
+  // habits is an array of habit objects
+  function timeline(log)  {
+    var el_timeline = document.querySelector('.js-timeline');
+    el_timeline.innerHTML = "";
+
+    for (var i = 0; i < log.length; i++)  {
+      var log_item = log[i];
+      el_timeline.innerHTML += "<li><p>" + log_item.date + "</p>";
+      el_timeline.innerHTML += "<p>" + log_item.habits + "</p>";
+      el_timeline.innerHTML += "<p>" + log_item.notes + "</p>";
+      el_timeline.innerHTML += "</li>";
+    }
+  }
 
 
   var width = 960,
@@ -68,8 +96,8 @@ document.addEventListener("DOMContentLoaded", function()  {
   var dateParse = d3.time.format("%m/%d/%Y");
   var today = new Date();
 
-  var svg = d3.select("body").selectAll("svg")
-    .data(d3.range(today.getFullYear()-1, today.getFullYear()+1))
+  var svg = d3.select("#tab_timeline").selectAll("svg")
+    .data(d3.range(today.getFullYear(), today.getFullYear()+1))
     .enter().append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -130,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function()  {
     data.push(d);
   }
 
-  var nest = d3.nest()
+  window.nest = d3.nest()
     .key(function(d) { return d.dd; })
     .map(data);
 
@@ -146,12 +174,18 @@ document.addEventListener("DOMContentLoaded", function()  {
       if (nest[d].length > 8) rectclass = "day q0-11";
       return rectclass;
     })
+    .on("click", function(d, i)  {
+      timeline(nest[d]);
+    })
     .select("title")
     //.text(function(d) { return d + ": " + percent(data[d]); });
     .text(function(d) {
-      var text = d + ": " + nest[d][0].habits[0];
-      for (var i = 1; i < nest[d].length; i++)  {
-        text += ", " + nest[d][i].habits[0];
+      var text = d + ": ";
+      for (var i = 0; i < nest[d].length; i++)  {
+        for (var j = 0; j < nest[d][i].habits.length; j++)  {
+          if (i == 0 && j == 0) text += nest[d][i].habits[j];
+          else text += ", " + nest[d][i].habits[j];
+        }
       }
       return text;
     });

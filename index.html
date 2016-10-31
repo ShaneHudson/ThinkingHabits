@@ -4,62 +4,40 @@
         <meta name="viewport" content="width=device-width">
         <title>Thinking Habits</title>
         <link rel="stylesheet" href="style.css">
-        <style>
-
-            body {
-                font: 10px sans-serif;
-                shape-rendering: crispEdges;
-            }
-
-            .day {
-                fill: #fff;
-                stroke: #ccc;
-            }
-
-            .month {
-                fill: none;
-                stroke: #000;
-                stroke-width: 2px;
-            }
-
-
-            .RdYlGn .q0-11{fill:rgb(165,0,38)}
-            .RdYlGn .q1-11{fill:rgb(215,48,39)}
-            .RdYlGn .q2-11{fill:rgb(244,109,67)}
-            .RdYlGn .q3-11{fill:rgb(253,174,97)}
-            .RdYlGn .q4-11{fill:rgb(254,224,139)}
-            .RdYlGn .q5-11{fill:rgb(255,255,191)}
-            .RdYlGn .q6-11{fill:rgb(217,239,139)}
-            .RdYlGn .q7-11{fill:rgb(166,217,106)}
-            .RdYlGn .q8-11{fill:rgb(102,189,99)}
-            .RdYlGn .q9-11{fill:rgb(26,152,80)}
-            .RdYlGn .q10-11{fill:rgb(0,104,55)}
-
-        </style>
     </head>
     <body>
-        <ul>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_mental_filter" data-habit="mental_filter"><label for="habit_mental_filter">Mental Filter</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_judgements" data-habit="judgements"><label for="habit_judgements">Judgements</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_prediction" data-habit="prediction"><label for="habit_prediction">Prediction</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_emotional_reasoning" data-habit="emotional_reasoning"><label for="habit_emotional_reasoning">Emotional Reasoning</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_mind_reading" data-habit="mind_reading"><label for="habit_mind_reading">Mind Reading</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_mountains_and_molehills" data-habit="mountains_and_molehills"><label for="habit_mountains_and_molehills">Mountains and Molehills</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_compare_and_despair" data-habit="compare_and_despair"><label for="habit_compare_and_despair">Compare and Despair</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_catastrophising" data-habit="catastrophising"><label for="habit_catastrophising">Catastrophising</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_critical_self" data-habit="critical_self"><label for="habit_critical_self">Critical Self</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_black_and_white" data-habit="black_and_white"><label for="habit_black_and_white">Black and White Thinking</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_shoulds_and_musts" data-habit="shoulds_and_musts"><label for="habit_shoulds_and_musts">Shoulds and Musts</label></li>
-            <li><input type="radio" name="habits" class="js-habit" id="habit_memories" data-habit="Memories"><label for="habit_memories">Memories</label></li>
-        </ul>
-        <form class="js-details details">
+        <input type="radio" class="checkbox_hack" checked name="tabs" id="tabs_habits"><label for="tabs_habits">Habits</label>
+        <input type="radio" class="checkbox_hack" name="tabs" id="tabs_details">
+        <input type="radio" class="checkbox_hack" name="tabs" id="tabs_timeline"><label for="tabs_timeline">Timeline</label>
+
+        <div id="tab_habits">
+            <ul class="habits">
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_mental_filter" value="mental_filter"><label for="habit_mental_filter">Mental Filter</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_judgements" value="judgements"><label for="habit_judgements">Judgements</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_prediction" value="prediction"><label for="habit_prediction">Prediction</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_emotional_reasoning" value="emotional_reasoning"><label for="habit_emotional_reasoning">Emotional Reasoning</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_mind_reading" value="mind_reading"><label for="habit_mind_reading">Mind Reading</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_mountains_and_molehills" value="mountains_and_molehills"><label for="habit_mountains_and_molehills">Mountains and Molehills</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_compare_and_despair" value="compare_and_despair"><label for="habit_compare_and_despair">Compare and Despair</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_catastrophising" value="catastrophising"><label for="habit_catastrophising">Catastrophising</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_critical_self" value="critical_self"><label for="habit_critical_self">Critical Self</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_black_and_white" value="black_and_white"><label for="habit_black_and_white">Black and White Thinking</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_shoulds_and_musts" value="shoulds_and_musts"><label for="habit_shoulds_and_musts">Shoulds and Musts</label></li>
+                <li><input type="checkbox" name="habits" class="js-habit checkbox_hack" id="habit_memories" value="Memories"><label for="habit_memories">Memories</label></li>
+            </ul>
+            <label for="tabs_details" class="js-next button--next">Next</label>
+        </div>
+        <form class="js-details details" id="tab_details">
             <textarea class="js-notes"></textarea>
             <input type="date" class="js-date">
             <input type="time" class="js-time">
             <input type="button" value="save" class="js-save">
         </form>
-        <button class="js-export">Export your data</button>
-        <svg></svg>
+
+        <div id="tab_timeline">
+            <a class="js-export">Export your data</a>
+            <ul class="timeline js-timeline"></ul>
+        </div>
         <script src="d3.min.js"></script>
         <script src="script.js"></script>
     </body>

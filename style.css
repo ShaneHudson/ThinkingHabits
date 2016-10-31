@@ -1,3 +1,91 @@
-.details  {
+body  {
+    background: #F4F9D2;
+    font-family: sans-serif;
+}
+
+.day {
+    fill: #fff;
+    stroke: #ccc;
+}
+
+.month {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2px;
+}
+
+
+.RdYlGn .q0-11{fill:rgb(165,0,38)}
+.RdYlGn .q1-11{fill:rgb(215,48,39)}
+.RdYlGn .q2-11{fill:rgb(244,109,67)}
+.RdYlGn .q3-11{fill:rgb(253,174,97)}
+.RdYlGn .q4-11{fill:rgb(254,224,139)}
+.RdYlGn .q5-11{fill:rgb(255,255,191)}
+.RdYlGn .q6-11{fill:rgb(217,239,139)}
+.RdYlGn .q7-11{fill:rgb(166,217,106)}
+.RdYlGn .q8-11{fill:rgb(102,189,99)}
+.RdYlGn .q9-11{fill:rgb(26,152,80)}
+.RdYlGn .q10-11{fill:rgb(0,104,55)}
+
+#tab_habits, #tab_details, #tab_timeline  {
     display: none;
+}
+
+#tabs_habits:checked ~ #tab_habits,
+#tabs_details:checked ~ #tab_details,
+#tabs_timeline:checked ~ #tab_timeline  {
+    display: block;
+}
+
+.habits  {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    height: 80vh;
+    border-right: 1px solid #738201;
+    border-bottom: 1px solid #738201;
+}
+
+.habits li {
+    width: 50%;
+}
+
+.checkbox_hack  {
+    /* checkbox hack */
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: -50px;
+}
+
+.habits label  {
+    cursor: pointer;
+    border: 1px solid #738201;
+    border-right: none;
+    border-bottom: none;
+    color: #738201;
+    font-size: 0.9rem;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.habits input:checked + label  {
+    background: #A8C56B;
+    color: #fff;
+}
+
+.habits input:focus + label  {
+    background: #AFD2C1;
+}
+
+.button--next  {
+    background: #AFD2C1;
+    display: none;
+    text-align: center;
+    line-height: 3;
+    width: 100%;
 }
