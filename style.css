@@ -78,8 +78,14 @@ body  {
     color: #fff;
 }
 
+@keyframes animate-background {
+    0% {
+        background: #AFD2C1;
+    }
+}
+
 .habits input:focus + label  {
-    background: #AFD2C1;
+    animation: animate-background 1s;
 }
 
 .button--next  {
