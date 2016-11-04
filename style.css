@@ -88,9 +88,25 @@ body  {
     animation: animate-background 1s;
 }
 
-.button--next  {
-    background: #AFD2C1;
+.c-details__notes  {
+    min-height: 50vh;
+    width: 100%;
+}
+
+.c-details__date,
+.c-details__time  {
+    width: 100%;
+}
+
+#tab_habits .button--cta  {
     display: none;
+}
+
+.button--cta  {
+    background: #AFD2C1;
+    border: none;
+    font-size: inherit;
+    font-family: inherit;
     text-align: center;
     line-height: 3;
     width: 100%;
